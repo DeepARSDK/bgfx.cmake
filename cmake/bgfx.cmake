@@ -51,23 +51,27 @@ endif()
 
 # Frameworks required on OS X
 if( APPLE )
-	find_library( COCOA_LIBRARY Cocoa )
-	find_library( METAL_LIBRARY Metal )
-	find_library( QUARTZCORE_LIBRARY QuartzCore )
-	mark_as_advanced( COCOA_LIBRARY )
-	mark_as_advanced( METAL_LIBRARY )
-	mark_as_advanced( QUARTZCORE_LIBRARY )
-	target_link_libraries( bgfx PUBLIC ${COCOA_LIBRARY} ${METAL_LIBRARY} ${QUARTZCORE_LIBRARY} )
+#	find_library( COCOA_LIBRARY Cocoa )
+#	find_library( METAL_LIBRARY Metal )
+#	find_library( QUARTZCORE_LIBRARY QuartzCore )
+#	mark_as_advanced( COCOA_LIBRARY )
+#	mark_as_advanced( METAL_LIBRARY )
+#	mark_as_advanced( QUARTZCORE_LIBRARY )
+#	target_link_libraries( bgfx PUBLIC ${COCOA_LIBRARY} ${METAL_LIBRARY} ${QUARTZCORE_LIBRARY} )
 endif()
 
-if( UNIX AND NOT APPLE )
+if( UNIX AND NOT APPLE AND NOT ANDROID)
 	target_link_libraries( bgfx PUBLIC GL )
+endif()
+
+if (ANDROID)
+	target_link_libraries (bgfx PUBLIC EGL GLESv2 android)
 endif()
 
 # Excluded files from compilation
 set_source_files_properties( ${BGFX_DIR}/src/amalgamated.mm PROPERTIES HEADER_FILE_ONLY ON )
-set_source_files_properties( ${BGFX_DIR}/src/glcontext_ppapi.cpp PROPERTIES HEADER_FILE_ONLY ON )
-set_source_files_properties( ${BGFX_DIR}/src/glcontext_egl.cpp PROPERTIES HEADER_FILE_ONLY ON )
+# set_source_files_properties( ${BGFX_DIR}/src/glcontext_ppapi.cpp PROPERTIES HEADER_FILE_ONLY ON )
+# set_source_files_properties( ${BGFX_DIR}/src/glcontext_egl.cpp PROPERTIES HEADER_FILE_ONLY ON )
 
 # Exclude mm files if not on OS X
 if( NOT APPLE )

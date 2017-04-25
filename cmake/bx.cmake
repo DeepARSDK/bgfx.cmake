@@ -52,7 +52,7 @@ target_compile_definitions( bx PUBLIC "__STDC_FORMAT_MACROS" )
 target_compile_definitions( bx PUBLIC "__STDC_CONSTANT_MACROS" )
 
 # Additional dependencies on Unix
-if( UNIX AND NOT APPLE )
+if( UNIX AND NOT APPLE AND NOT ANDROID )
 	# Threads
 	find_package( Threads )
 	target_link_libraries( bx ${CMAKE_THREAD_LIBS_INIT} dl )
