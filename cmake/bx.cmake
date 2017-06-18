@@ -29,8 +29,8 @@ endif()
 # Create the bx target
 add_library( bx STATIC ${BX_SOURCES} )
 
-# Link against psapi in Visual Studio
-if( MSVC )
+# Link against psapi on Windows
+if( WIN32 )
 	target_link_libraries( bx PUBLIC psapi )
 endif()
 
@@ -63,3 +63,6 @@ endif()
 
 # Put in a "bgfx" folder in Visual Studio
 set_target_properties( bx PROPERTIES FOLDER "bgfx" )
+
+# Export debug build as "bxd"
+set_target_properties( bx PROPERTIES OUTPUT_NAME_DEBUG "bxd" )

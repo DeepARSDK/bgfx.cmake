@@ -12,6 +12,7 @@
 include( cmake/3rdparty/edtaa3.cmake )
 include( cmake/3rdparty/etc1.cmake )
 include( cmake/3rdparty/etc2.cmake )
+include( cmake/3rdparty/iqa.cmake )
 include( cmake/3rdparty/libsquish.cmake )
 #include( cmake/3rdparty/nvtt.cmake )
 include( cmake/3rdparty/pvrtc.cmake )
@@ -38,3 +39,6 @@ target_link_libraries( bimg bx edtaa3 etc1 etc2 squish pvrtc iqa)
 
 # Put in a "bgfx" folder in Visual Studio
 set_target_properties( bimg PROPERTIES FOLDER "bgfx" )
+
+# Export debug build as "bimgd"
+set_target_properties( bimg PROPERTIES OUTPUT_NAME_DEBUG "bimgd" )
