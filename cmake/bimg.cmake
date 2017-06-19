@@ -41,4 +41,4 @@ target_link_libraries( bimg bx edtaa3 etc1 etc2 squish pvrtc iqa)
 set_target_properties( bimg PROPERTIES FOLDER "bgfx" )
 
 # Export debug build as "bimgd"
-set_target_properties( bimg PROPERTIES OUTPUT_NAME_DEBUG "bimgd" )
+# set_target_properties( bimg PROPERTIES OUTPUT_NAME_DEBUG "bimgd" )
