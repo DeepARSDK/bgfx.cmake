@@ -8,12 +8,21 @@
 # You should have received a copy of the CC0 Public Domain Dedication along with
 # this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
-if( TARGET squish )
+if( TARGET astc-codec )
 	return()
 endif()
 
-file( GLOB SQUISH_SOURCES ${BIMG_DIR}/3rdparty/libsquish/*.cpp ${BIMG_DIR}/3rdparty/libsquish/*.h ${BIMG_DIR}/3rdparty/libsquish/*.inl )
+file(
+	GLOB
+	ASTC_CODEC_SOURCES
+	${BIMG_DIR}/3rdparty/astc-codec/src/decoder/*.cc
+	${BIMG_DIR}/3rdparty/astc-codec/src/decoder/*.h
+)
 
-add_library( squish STATIC ${SQUISH_SOURCES} )
-target_include_directories( squish PUBLIC $<BUILD_INTERFACE:${BIMG_DIR}/3rdparty> )
-set_target_properties( squish PROPERTIES FOLDER "bgfx/3rdparty" )
+add_library( astc-codec STATIC ${ASTC_CODEC_SOURCES} )
+target_include_directories( astc-codec
+	PUBLIC
+		$<BUILD_INTERFACE:${BIMG_DIR}/3rdparty>
+		$<BUILD_INTERFACE:${BIMG_DIR}/3rdparty/astc-codec>
+		$<BUILD_INTERFACE:${BIMG_DIR}/3rdparty/astc-codec/include> )
+set_target_properties( astc-codec PROPERTIES FOLDER "bgfx/3rdparty" )

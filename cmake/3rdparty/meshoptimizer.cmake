@@ -8,12 +8,12 @@
 # You should have received a copy of the CC0 Public Domain Dedication along with
 # this software. If not, see <http://creativecommons.org/publicdomain/zero/1.0/>.
 
-if( TARGET squish )
+if( TARGET meshoptimizer )
 	return()
 endif()
 
-file( GLOB SQUISH_SOURCES ${BIMG_DIR}/3rdparty/libsquish/*.cpp ${BIMG_DIR}/3rdparty/libsquish/*.h ${BIMG_DIR}/3rdparty/libsquish/*.inl )
+file( GLOB MESHOPTIMIZER_SOURCES ${BGFX_DIR}/3rdparty/meshoptimizer/src/*.cpp ${BGFX_DIR}/3rdparty/meshoptimizer/src/*.h )
 
-add_library( squish STATIC ${SQUISH_SOURCES} )
-target_include_directories( squish PUBLIC $<BUILD_INTERFACE:${BIMG_DIR}/3rdparty> )
-set_target_properties( squish PROPERTIES FOLDER "bgfx/3rdparty" )
+add_library( meshoptimizer STATIC ${MESHOPTIMIZER_SOURCES} )
+target_include_directories( meshoptimizer PUBLIC ${BGFX_DIR}/3rdparty )
+set_target_properties( meshoptimizer PROPERTIES FOLDER "bgfx/3rdparty" )
