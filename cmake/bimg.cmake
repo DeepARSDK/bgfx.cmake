@@ -41,9 +41,9 @@ target_include_directories( bimg
 # target_link_libraries( bimg bx edtaa3 etc1 etc2 squish nvtt pvrtc )
 if(ANDROID)
 include( cmake/3rdparty/nvtt.cmake )
-target_link_libraries( bimg bx edtaa3 etc1 etc2 astc-codec astc squish pvrtc nvtt iqa)
+target_link_libraries( bimg bx astc-codec astc edtaa3 etc1 etc2 squish pvrtc nvtt iqa)
 else()
-target_link_libraries( bimg bx edtaa3 etc1 etc2 astc-codec astc squish pvrtc iqa)
+target_link_libraries( bimg bx astc-codec astc edtaa3 etc1 etc2 squish pvrtc iqa)
 endif()
 
 # target_link_libraries( bimg bx astc-codec astc edtaa3 etc1 etc2 iqa squish nvtt pvrtc )
