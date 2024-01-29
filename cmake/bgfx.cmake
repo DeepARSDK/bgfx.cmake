@@ -84,6 +84,21 @@ target_include_directories( bgfx
 # bgfx depends on bx and bimg
 target_link_libraries( bgfx PRIVATE bx bimg )
 
+# DirectXTK12
+if( MINGW )
+	target_include_directories(bgfx PRIVATE "${BGFX_DIR}/3rdparty/directxtk12/include")
+	target_link_libraries(bgfx PRIVATE
+		"${BGFX_DIR}/3rdparty/directxtk12/lib/mingw/libDirectXTK12.a"
+		"${BGFX_DIR}/3rdparty/directxtk12/lib/mingw/libDirectX-Headers.a"
+		"${BGFX_DIR}/3rdparty/directxtk12/lib/mingw/libDirectX-Guids.a")
+elseif( MSVC )
+	target_include_directories(bgfx PRIVATE "${BGFX_DIR}/3rdparty/directxtk12/include")
+	target_link_libraries(bgfx PRIVATE
+		"${BGFX_DIR}/3rdparty/directxtk12/lib/msvc/DirectXTK12.lib"
+		"${BGFX_DIR}/3rdparty/directxtk12/lib/msvc/DirectX-Headers.lib"
+		"${BGFX_DIR}/3rdparty/directxtk12/lib/msvc/DirectX-Guids.lib")
+endif()
+
 # Frameworks required on iOS, tvOS and macOS
 if( ${CMAKE_SYSTEM_NAME} MATCHES iOS|tvOS )
 	target_link_libraries (bgfx PUBLIC "-framework OpenGLES  -framework Metal -framework UIKit -framework CoreGraphics -framework QuartzCore")
