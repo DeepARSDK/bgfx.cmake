@@ -94,9 +94,10 @@ if( MINGW )
 elseif( MSVC )
 	target_include_directories(bgfx PRIVATE "${BGFX_DIR}/3rdparty/directxtk12/include")
 	target_link_libraries(bgfx PRIVATE
-		"${BGFX_DIR}/3rdparty/directxtk12/lib/msvc/DirectXTK12.lib"
-		"${BGFX_DIR}/3rdparty/directxtk12/lib/msvc/DirectX-Headers.lib"
-		"${BGFX_DIR}/3rdparty/directxtk12/lib/msvc/DirectX-Guids.lib")
+		$<IF:$<CONFIG:Debug>,${BGFX_DIR}/3rdparty/directxtk12/lib/msvc/debug/DirectXTK12.lib,${BGFX_DIR}/3rdparty/directxtk12/lib/msvc/release/DirectXTK12.lib>
+		$<IF:$<CONFIG:Debug>,${BGFX_DIR}/3rdparty/directxtk12/lib/msvc/debug/DirectX-Headers.lib,${BGFX_DIR}/3rdparty/directxtk12/lib/msvc/release/DirectX-Headers.lib>
+		$<IF:$<CONFIG:Debug>,${BGFX_DIR}/3rdparty/directxtk12/lib/msvc/debug/DirectX-Guids.lib,${BGFX_DIR}/3rdparty/directxtk12/lib/msvc/release/DirectX-Guids.lib>
+	)
 endif()
 
 # Frameworks required on iOS, tvOS and macOS
